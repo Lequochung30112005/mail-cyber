@@ -27,7 +27,7 @@ Xuất file XLSX cập nhật các data mới làm bo dataset mới lấy làm n
 
 | Tính năng           | Mô tả                                   |
 |---------------------|-----------------------------------------|
-| **AI Detection**    | SVM + HHO tối ưu, độ chính xác >90%     |
+| **AI Detection**    | SVM + Listm tối ưu, độ chính xác >95%     |
 | **URL Scanner**     | Blacklist DB + VirusTotal API real-time |
 | **IMAP Auto-fetch** | Tự động kéo email Gmail/Outlook         |
 | **2FA OTP**         | Xác thực 2 lớp bảo vệ tài khoản         |
