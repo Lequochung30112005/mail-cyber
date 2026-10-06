@@ -1,14 +1,24 @@
-# Node modules
-node_modules/
-dist/
-build/
-
-# Python
+# --- MÔ HƯỜNG & BẢO MẬT ---
+.env
+files.env
+venv/
 __pycache__/
 *.pyc
-venv/
-.env
-ai_engine/models/distilbert_model/model.safetensors
-# Docker & OS
+*.pyo
+
+# --- FRONTEND / NODE ---
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+
+# --- BACKEND / LOGS ---
+backend/logs/
+backend/log/
+
+
+
+# --- HỆ THỐNG / IDE ---
+.idea/
+.vscode/
 .DS_Store
 *.log
