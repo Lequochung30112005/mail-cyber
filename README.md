@@ -86,7 +86,7 @@ docker-compose up --build
 
 # 2. Mở trình duyệt
 
-# Frontend: http://localhost:3000
+# Frontend: http://localhost:5000
 
 # API Docs: http://localhost:8000/api/docs -
 
