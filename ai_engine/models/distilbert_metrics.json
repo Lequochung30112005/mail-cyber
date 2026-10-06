@@ -1,0 +1,29 @@
+{
+  "model": "DistilBERT",
+  "accuracy": 0.9931,
+  "precision": 0.9944,
+  "recall": 0.9927,
+  "f1_score": 0.9936,
+  "train_size": 60475,
+  "test_size": 12952,
+  "epochs": 3,
+  "device": "cuda",
+  "training_time_minutes": 52.3,
+  "history": [
+    {
+      "epoch": 1,
+      "val_f1": 0.9908,
+      "val_acc": 0.99
+    },
+    {
+      "epoch": 2,
+      "val_f1": 0.9934,
+      "val_acc": 0.9929
+    },
+    {
+      "epoch": 3,
+      "val_f1": 0.9935,
+      "val_acc": 0.993
+    }
+  ]
+}

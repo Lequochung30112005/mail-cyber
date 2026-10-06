@@ -1,0 +1,76 @@
+services:
+  # ===== DATABASE (MySQL 8.0) =====
+  db:
+    image: mysql:8.0
+    container_name: cybermail_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-123456}
+      MYSQL_DATABASE: ${DB_NAME:-cybermail_shield}
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - "3307:3306" # Vẫn map ra 3307 để ông dùng Navicat/DBeaver soi DB
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${DB_PASSWORD:-123456}" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - cybermail_net
+
+  # ===== BACKEND (FastAPI + AI Engine) =====
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: cybermail_backend
+    restart: unless-stopped
+    # Không cần mở ports 8000 ra ngoài nếu muốn bảo mật (chỉ cho Nginx gọi)
+    # Nhưng nếu ông muốn test Swagger trực tiếp thì giữ nguyên
+    ports:
+      - "8000:8000"
+    env_file:
+      - files.env
+    environment:
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DATABASE_URL=mysql+pymysql://root:${DB_PASSWORD:-123456}@db:3306/${DB_NAME:-cybermail_shield}
+    volumes:
+      - ./ai_engine/models:/app/ai_engine/models
+      - ./backend/logs:/app/backend/logs
+      - ./backend:/app/backend
+      - ./ai_engine:/app/ai_engine
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      # FIX: Đổi sang /api/health để khớp với main.py mới
+      test: [ "CMD", "curl", "-f", "http://localhost:8000/api/health" ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    networks:
+      - cybermail_net
+
+  # ===== FRONTEND (React + Nginx) =====
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: cybermail_frontend
+    ports:
+      - "5000:80"
+    environment:
+      # SỬA Ở ĐÂY: Trỏ thẳng sang port 8000 của Backend
+      - VITE_API_URL=http://localhost:8000/api
+    networks:
+      - cybermail_net
+
+volumes:
+  mysql_data:
+
+networks:
+  cybermail_net:
+    driver: bridge

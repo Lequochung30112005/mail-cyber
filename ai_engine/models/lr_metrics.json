@@ -1,0 +1,10 @@
+{
+  "model": "TF-IDF + LogisticRegression",
+  "accuracy": 0.9826,
+  "precision": 0.9817,
+  "recall": 0.9862,
+  "f1_score": 0.984,
+  "train_size": 73392,
+  "test_size": 12952,
+  "training_time_seconds": 170.2
+}

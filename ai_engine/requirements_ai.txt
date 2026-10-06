@@ -1,0 +1,45 @@
+# ========================
+# ai_engine/requirements_ai.txt
+# ========================
+
+# ========================
+# Core ML & Math (Fix xung đột numpy với pandas)
+# ========================
+numpy==1.26.4
+pandas==2.2.1
+scikit-learn==1.6.1
+joblib==1.5.3
+
+# ========================
+# Deep Learning / BiLSTM
+# ========================
+tensorflow==2.20.0
+keras==3.13.2
+
+# ========================
+# NLP / Preprocessing
+# ========================
+nltk==3.8.1
+
+# ========================
+# HHO / Optimization
+# ========================
+mealpy
+
+# ========================
+# API / Backend
+# ========================
+fastapi
+uvicorn
+requests
+
+# ========================
+# Visualization
+# ========================
+matplotlib==3.8.3
+seaborn==0.13.2
+
+# ========================
+# Optional UI
+# ========================
+streamlit

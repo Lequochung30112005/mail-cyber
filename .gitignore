@@ -1,0 +1,14 @@
+# Node modules
+node_modules/
+dist/
+build/
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.env
+ai_engine/models/distilbert_model/model.safetensors
+# Docker & OS
+.DS_Store
+*.log

@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  background-color: #ffffff;
+  color: #0f172a;
+}
+
+body {
+  margin: 0;
+  background-color: #ffffff;
+  color: #0f172a;
+}
+
+/* Xóa viền trắng thừa để giao diện liền mạch */
+.ant-layout, .ant-layout-header, .ant-layout-sider {
+  background: transparent !important;
+  border: none !important;
+}
